@@ -1,6 +1,6 @@
 .login-dark {
     height:600px;
-    background:#475d62 url();
+    background:#1b1b1b url();
     background-size:cover;
     position:relative;
   }
@@ -8,7 +8,7 @@
   .login-dark form {
     max-width:320px;
     width:90%;
-    background-color:#1e2833;
+    background-color:#0f0f10;
     padding:40px;
     border-radius:4px;
     transform:translate(-50%, -50%);
