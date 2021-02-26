@@ -13,14 +13,14 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect("mongodb://localhost:27017/elearn");
+mongoose.connect("mongodb://localhost:27017/stonks");
 
 
 var app = express();
 app.set('view engine', 'ejs');
 
 app.use(require("express-session")({
-    secret: "better than MyCaptain",
+    secret: "zerodha stonks go down",
     resave: false,
     saveUninitialized: false 
 }));
@@ -61,7 +61,9 @@ app.post("/signup", function(req,res){
     req.body.fullname
     req.body.email
     req.body.password
-    User.register(new User({username: req.body.username, fullname: req.body.fullname, email: req.body.email }), req.body.password, function(err, user){
+    req.body.accNum
+    req.body.balance
+    User.register(new User({username: req.body.username, fullname: req.body.fullname, email: req.body.email, accNum: req.body.accNum, balance: req.body.balance }), req.body.password, function(err, user){
         if(err){
             console.log(err);
             return res.render("signup");
