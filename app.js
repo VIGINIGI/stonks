@@ -6,7 +6,7 @@ var User = require("./models/user");
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
 const { request } = require('express');
-const stock = require('./models/stock');
+var stock = require('./models/stock');
 
 
 mongoose.set('useNewUrlParser', true);
@@ -19,6 +19,7 @@ mongoose.connect("mongodb://localhost:27017/stonks");
 
 var app = express();
 app.set('view engine', 'ejs');
+app.use(express.json());
 
 app.use(require("express-session")({
     secret: "zerodha stonks go down",
@@ -36,6 +37,11 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res, next){
     res.locals.currentUser = req.user;
+    next();
+});
+
+app.use(function(req,res, next){
+    res.locals.currentStocks = req.stock;
     next();
 });
 // ++++++++++
@@ -86,27 +92,45 @@ app.get("/stock" ,
             data : getInfo
         });
     });
-
 app.post("/stock",  
-// function(req,res){
-    
-     async ( req, res ) => { 
-        
-        const downloadsInfo = await stock.insertOne({name: req.body.name,
-            desc: req.body.desc,
-            industry: req.body.industry,
-            price: req.body.price,            
-            sym: req.body.sym,
-            numStocks: req.body.numStocks});
-            res.status(200).json({
-            status : 'success',
-            data : downloadsInfo
-      });
-    //   };
+function(req,res){
+    stock.create({name: req.body.name,
+        desc: req.body.desc,
+        industry: req.body.industry,
+        price: req.body.price,            
+        sym: req.body.sym,
+        numStocks: req.body.numStocks}, function(err, newlyCreated){
+        if(err){
+            console.log("Error; the world is against you.");
+            console.log(err);
+        }
+        else{
+            // res.redirect("/stock"); 
+            console.log(req.body);
+            res.send(newlyCreated); 
 
+        }
+    });
+    // const stock = new stock({name: req.body.name,
+    //     desc: req.body.desc,
+    //     industry: req.body.industry,
+    //     price: req.body.price,               
+    //     sym: req.body.sym,
+    //     numStocks: req.body.numStocks});
+    //   const stockdata = await stock.save();
+    //   res.send(stockdata);
+    //   res.status(201).send({ message: "New Order Created", data: stockdata});
+    
+    
 });
 
+app.get("/profile", function(req,res){
+    // const data=user.find({username:currentUser});
+    res.render('profile',{currentUser: req.user});
+});
+app.post("/profile",function(req,res){
 
+})
 // LOGIN
 
 app.get("/login", function(req,res){
