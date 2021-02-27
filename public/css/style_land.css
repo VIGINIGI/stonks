@@ -27,32 +27,7 @@ body{
     color: black;
 }
 
-.login-dark {
-    height: 50px;
-    position:relative;
-  }
-  
-  .login-dark form {
-    max-width:600px;
-    width:90%;
-    margin-top: 200px;
-    padding:5px;
-    border-radius:4px;
-    transform:translate(-50%, -50%);
-    position:absolute;
-    left:50%; 
-    color:#fff;
-    box-shadow:3px 3px 4px rgba(0,0,0,0.2);
-  }
-  
-  .login-dark .illustration {
-    text-align:center;
-    padding:15px 0 20px;
-    font-size:100px;
-    color: #2980ef;
-  }
-  
-  .login-dark form .form-control {
+  .row form .form-control {
     background:none;
     border:none;
     border-bottom:1px solid #434a52;
