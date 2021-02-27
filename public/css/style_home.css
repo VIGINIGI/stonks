@@ -3,7 +3,8 @@ body, html {
 }
 .bg {
   /* The image used */
-  background-image: url("kjsce.jpg");
+  background-color: gray;
+
 
   /* Full height */
   height: 100%;
@@ -12,4 +13,26 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.container-fluid{
+  background-color:rgba(0, 0, 0, 0.9);
+}
+
+h1{
+  color:white;
+}
+
+.card{
+  background-color: black;
+  color:#f2eded;
+  margin-bottom: 25px;
+  box-shadow: 20px 20px 30px rgba(0,0,0,0.2);
+}
+
+.card1{
+  background-color: black;
+  color:#f2eded;
+  margin-bottom: 8px;
+  box-shadow: 20px 20px 30px rgba(0,0,0,0.2);
 }

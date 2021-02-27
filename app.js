@@ -6,6 +6,7 @@ var User = require("./models/user");
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
 const { request } = require('express');
+const stock = require('./models/stock');
 
 
 mongoose.set('useNewUrlParser', true);
@@ -73,6 +74,38 @@ app.post("/signup", function(req,res){
         });
     });
 });
+// Stocks
+app.get("/stock" ,
+    
+        async (req, res) => {
+
+        const getInfo = await stock.find({});
+    
+        res.status(200).json({
+            status : 'success',
+            data : getInfo
+        });
+    });
+
+app.post("/stock",  
+// function(req,res){
+    
+     async ( req, res ) => { 
+        
+        const downloadsInfo = await stock.insertOne({name: req.body.name,
+            desc: req.body.desc,
+            industry: req.body.industry,
+            price: req.body.price,            
+            sym: req.body.sym,
+            numStocks: req.body.numStocks});
+            res.status(200).json({
+            status : 'success',
+            data : downloadsInfo
+      });
+    //   };
+
+});
+
 
 // LOGIN
 
