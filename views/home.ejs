@@ -9,251 +9,72 @@
 </head>
 <body>
 <div class="container-fluid">
-    <h1>Order</h1>
+  
+    <h1>Order </h1>
 <div class="row">   
     <div class="col-2 border-right ">
         <h4>Stocks</h4>
         <div class='row'>
           <div class="col-sm-12">
+              <% stock.forEach(function(stock) { %>
             <div class="card2">
                 <div class="card-body">
                   <div class='row'>
-                    <div class="col-sm-8">INDUSINDBK</div>
-                    <div class="col-sm-4">2100</div>
+                    <div class="col-sm-6"><%= stock.sym %></div>
+                    <div class="col-sm-6"><%= stock.price %></div>
                   </div>
                 </div>
             </div>
-            <div class="card3">
-              <div class="card-body">
-                <div class='row'>
-                  <div class="col-sm-8">INDUSINDBK</div>
-                  <div class="col-sm-4">1100</div>
-                </div>
-              </div>
-            </div>
-            <div class="card2">
-              <div class="card-body">
-                <div class='row'>
-                  <div class="col-sm-8">INDUSINDBK</div>
-                  <div class="col-sm-4">2100</div>
-                </div>
-              </div>
-          </div>
-          <div class="card3">
-            <div class="card-body">
-              <div class='row'>
-                <div class="col-sm-8">INDUSINDBK</div>
-                <div class="col-sm-4">1100</div>
-              </div>
-            </div>
-          </div>
-          </div>
-  
-
-
-          <div class='col-sm-8'>
-            INDUSINDBK
-          </div>
-          <div class='col-sm-4'>
-            1000
+            <% })   %>
+          
           </div>
         </div>
-
     </div>
     <div class="Col">
     
-        
-
-        
-
-
-
-        
-            
-        
+    
+       
     <div class="container">
 
         <div class="row row-content">
-            <div class="col-sm-12">
-                <div class="card1">
-                    <div class="card-body">
-                        <div class="col-sm"> Wallet Balance: 1234</div>
-                        <div class="col-sm">Total Stocks Held : 12</div>
-                        <div class="col-sm">Profits:1000</div>
-                    </div>
-                  </div>
+          <div class="col-sm-12">
+            <div class="card1">
+              <div class="card-body">
+                  <div class="col-sm"> Wallet Balance: <%= currentUser.balance %></div>
+                  <div class="col-sm">Total Stocks Held : 12</div>
+                  <div class="col-sm">Profits:1000</div>
+              </div>
             </div>
+          </div>
         </div>
-            <br>
-            <br>
-
+        <br><br>
+            
         <div class="row row-content">
-
-
-            <div class="col-sm-4">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">RELIANCE</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Reliance Industries (Energy)</h6>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      
-                      <i class="fas fa-rupee-sign" aria-hidden="true">2100</i>
-                      <br><br>
-                      <div class="row">
-                        <div class='col-sm-1'></div>
-                        <div class='col-sm-5'>
-                            <a name="" id="" class="btn btn-block btn-outline-success" href="#" role="button">BUY</a>
-                        </div>
-                        <div class='col-sm-5'>
-                            <a name="" id="" class="btn btn-block btn-outline-danger" href="#" role="button">SELL</a>
-                        </div>
-                        <div class='col-sm-1'></div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-sm-4">
+          <% stock.forEach(function(stock) { %>
+              
+          <div class="col-sm-4">
               <div class="card" style="width: 20rem;">
                   <div class="card-body">
-                    <h5 class="card-title">SUNPHARMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Sun Pharmaceuticals (Pharma)</h6>
+                    <h5 class="card-title"><%= stock.sym %></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= stock.name %> (<%= stock.industry %>)</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     
-                    <i class="fas fa-rupee-sign" aria-hidden="true">300</i>
-                    <br><br>
-                    <div class="row">
-                      <div class='col-sm-1'></div>
-                      <div class='col-sm-5'>
-                          <a name="" id="" class="btn btn-block btn-outline-success" href="#" role="button">BUY</a>
-                      </div>
-                      <div class='col-sm-5'>
-                          <a name="" id="" class="btn btn-block btn-outline-danger" href="#" role="button">SELL</a>
-                      </div>
-                      <div class='col-sm-1'></div>
-                    </div>
-                  </div>
-                </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card" style="width: 20rem;">
-                <div class="card-body">
-                  <h5 class="card-title">RELIANCE</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Reliance Industries (Energy)</h6>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  
-                  <i class="fas fa-rupee-sign" aria-hidden="true">2100</i>
+                    <i class="fas fa-rupee-sign" aria-hidden="true"><%= stock.price %></i>
                   <br><br>
                   <div class="row">
-                    <div class='col-sm-1'></div>
-                    <div class='col-sm-5'>
-                        <a name="" id="" class="btn btn-block btn-outline-success" href="#" role="button">BUY</a>
-                    </div>
-                    <div class='col-sm-5'>
-                        <a name="" id="" class="btn btn-block btn-outline-danger" href="#" role="button">SELL</a>
-                    </div>
-                    <div class='col-sm-1'></div>
-                  </div>
-                </div>
-              </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card" style="width: 20rem;">
-              <div class="card-body">
-                <h5 class="card-title">SUNPHARMA</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Sun Pharmaceuticals Ltd. (Pharma)</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                
-                <i class="fas fa-rupee-sign" aria-hidden="true">300</i>
-                <br><br>
-                <div class="row">
-                  <div class='col-sm-1'></div>
-                  <div class='col-sm-5'>
-                      <a name="" id="" class="btn btn-block btn-outline-success" href="#" role="button">BUY</a>
-                  </div>
-                  <div class='col-sm-5'>
-                      <a name="" id="" class="btn btn-block btn-outline-danger" href="#" role="button">SELL</a>
-                  </div>
-                  <div class='col-sm-1'></div>
-                </div>
-              </div>
-            </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card" style="width: 20rem;">
-            <div class="card-body">
-              <h5 class="card-title">Reliance</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Reliance Industries (Energy)</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              
-              <i class="fas fa-rupee-sign" aria-hidden="true">2100</i>
-              <br><br>
-              <div class="row">
-                <div class='col-sm-1'></div>
-                <div class='col-sm-5'>
-                    <a name="" id="" class="btn btn-block btn-outline-success" href="#" role="button">BUY</a>
-                </div>
-                <div class='col-sm-5'>
-                    <a name="" id="" class="btn btn-block btn-outline-danger" href="#" role="button">SELL</a>
-                </div>
-                <div class='col-sm-1'></div>
-              </div>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card" style="width: 20rem;">
-          <div class="card-body">
-            <h5 class="card-title">SUNPHARMA</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Sun Pharmaceuticals Ltd. (Pharma)</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            
-            <i class="fas fa-rupee-sign" aria-hidden="true">300</i>
-            <br><br>
-            <div class="row">
-              <div class='col-sm-1'></div>
-              <div class='col-sm-5'>
-                  <a name="" id="" class="btn btn-block btn-outline-success" href="#" role="button">BUY</a>
-              </div>
-              <div class='col-sm-5'>
-                  <a name="" id="" class="btn btn-block btn-outline-danger" href="#" role="button">SELL</a>
-              </div>
-              <div class='col-sm-1'></div>
-            </div>
-          </div>
-        </div>
-  </div>
+                    <div class="col-sm-3">Qty: </div>
 
-            <div class="col-sm-4">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">TATAMOTORS</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Tata Motors (Automobile)</h6>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      
-                      <i class="fas fa-rupee-sign" aria-hidden="true">300</i>
-                      <br><br>
-                      <div class="row">
-                        <div class='col-sm-1'></div>
-                        <div class='col-sm-5'>
-                            <a name="" id="" class="btn btn-block btn-outline-success" href="#" role="button">BUY</a>
-                        </div>
-                        <div class='col-sm-5'>
-                            <a name="" id="" class="btn btn-block btn-outline-danger" href="#" role="button">SELL</a>
-                        </div>
-                        <div class='col-sm-1'></div>
+                    <div class="col-sm-8">
+                      <div class="number-input sm-number-input">
+                        <button class='btn-outline-danger' onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        <input class="quantity" min="1" name="quantity" id="quantity" value="1" type="number">
+                        <button class='btn-outline-success'  onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="fa fa-plus" aria-hidden="true"></i></button>
                       </div>
+                
                     </div>
+                    <div class="col-sm-2"></div>
                   </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card" style="width: 20rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">INDUSINDBK</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Indusind Bank (Finance)</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    
-                    <i class="fas fa-rupee-sign" aria-hidden="true">1100</i>
-                    <br><br>
+                  <br>
                     <div class="row">
                       <div class='col-sm-1'></div>
                       <div class='col-sm-5'>
@@ -267,21 +88,17 @@
                   </div>
                 </div>
           </div>
+          <% })   %>
         </div>
-        <!-- <div class="col"> -->
-            <hr>
-            <!-- <div class="card" style="width: 20rem;">
-                <div class="card-body">
-                  <h5 class="card-title">RLNS</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Relience(industry)</h6>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  
-                  <i class="fas fa-rupee-sign" aria-hidden="true">69</i>
-                  <br>
-                  <a name="" id="" class="btn btn-danger" href="#" role="button">Sell</a>
-                  <a name="" id="" class="btn btn-success" href="#" role="button">Buy</a>
-                </div>
-              </div> -->
+
+          
+            
+          
+          
+
+        
+        </div>
+            
 
         </div>
         
@@ -290,7 +107,7 @@
 
 
     </div>
-</div>
 </div>
 </body>
 <%- include('partials/footer'); -%>
+  

@@ -39,21 +39,20 @@ h1{
 }
 
 .card2{
-  /* background: linear-gradient(to bottom, rgb(10, 10, 10), rgb(23, 48, 26)); */
-  background-color: rgb(51, 102, 51);
+  background: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5));
   color:#f2eded;
   margin-bottom: 5px;
   box-shadow: 20px 20px 30px rgba(0,0,0,0.2);
 }
 
-.card3{
-  /* background: linear-gradient(to bottom, rgb(10, 10, 10), rgb(46, 23, 23)); */
-  background-color: rgb(105, 41, 39);
-  color:#f2eded;
-  margin-bottom: 5px;
-  box-shadow: 20px 20px 30px rgba(0,0,0,0.2);
-}
 
 h4{
   color: white;
+}
+
+.quantity{
+  width: 50px; 
+  border-color: white; 
+  background-color: rgba(0, 0, 0); 
+  color: white
 }

@@ -40,10 +40,7 @@ app.use(function(req,res, next){
     next();
 });
 
-app.use(function(req,res, next){
-    res.locals.currentStocks = req.stock;
-    next();
-});
+
 // ++++++++++
 // Routes   +
 // ++++++++++
@@ -54,7 +51,15 @@ app.get("/", function(req,res){
 });
 
 app.get("/home", isLoggedIn, function(req, res){
-    res.render('home',{currentUser: req.user});
+    stock.find({}, function(err, allStocks){
+        if(err){
+            console.log("Error; the world is against you.");
+            console.log(err);
+        }
+        else{
+            res.render("home", {stock: allStocks, currentUser: req.user});
+        }
+    });
 });
 
 // SIGNUP
@@ -68,9 +73,11 @@ app.post("/signup", function(req,res){
     req.body.fullname
     req.body.email
     req.body.password
-    req.body.accNum
+    req.body.accNum 
     req.body.balance
-    User.register(new User({username: req.body.username, fullname: req.body.fullname, email: req.body.email, accNum: req.body.accNum, balance: req.body.balance }), req.body.password, function(err, user){
+    req.body.number
+
+    User.register(new User({username: req.body.username, fullname: req.body.fullname, email: req.body.email, accNum: req.body.accNum, balance: req.body.balance, number:  req.body.balance}), req.body.password, function(err, user){
         if(err){
             console.log(err);
             return res.render("signup");
@@ -80,18 +87,7 @@ app.post("/signup", function(req,res){
         });
     });
 });
-// Stocks
-app.get("/stock" ,
-    
-        async (req, res) => {
 
-        const getInfo = await stock.find({});
-    
-        res.status(200).json({
-            status : 'success',
-            data : getInfo
-        });
-    });
 app.post("/stock",  
 function(req,res){
     stock.create({name: req.body.name,
@@ -123,14 +119,29 @@ function(req,res){
     
     
 });
-
-app.get("/profile", function(req,res){
+//profile
+app.get("/profile", isLoggedIn,  function(req,res){
     // const data=user.find({username:currentUser});
     res.render('profile',{currentUser: req.user});
 });
-app.post("/profile",function(req,res){
+app.post("/update",function(req,res){
+    User.updateOne({username:req.user},{$set:{fullname:req.body.full_name,number:req.body.mobile,
+    accNum:req.body.bank_number,email:req.body.email}}, function(err, res) {
+        if (err) {res.send(err);} });
+    });
+//portfolio
+app.get("/portfolio", isLoggedIn, function(req,res){
+    res.render('portfolio');
+});
+//transaction
+app.get("/transaction", isLoggedIn, function(req,res){
+    res.render('transaction');
+});
+//About Us
+app.get("/aboutus", function(req,res){
+    res.render('aboutus');
+});
 
-})
 // LOGIN
 
 app.get("/login", function(req,res){
