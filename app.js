@@ -7,6 +7,8 @@ var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
 const { request } = require('express');
 var stock = require('./models/stock');
+var s1 = require('./models/portfolio');
+
 
 
 mongoose.set('useNewUrlParser', true);
@@ -107,31 +109,49 @@ function(req,res){
 
         }
     });
-    // const stock = new stock({name: req.body.name,
-    //     desc: req.body.desc,
-    //     industry: req.body.industry,
-    //     price: req.body.price,               
-    //     sym: req.body.sym,
-    //     numStocks: req.body.numStocks});
-    //   const stockdata = await stock.save();
-    //   res.send(stockdata);
-    //   res.status(201).send({ message: "New Order Created", data: stockdata});
-    
-    
 });
 //profile
 app.get("/profile", isLoggedIn,  function(req,res){
     // const data=user.find({username:currentUser});
     res.render('profile',{currentUser: req.user});
 });
-app.post("/update",function(req,res){
+app.post("/profile",function(req,res){
     User.updateOne({username:req.user},{$set:{fullname:req.body.full_name,number:req.body.mobile,
     accNum:req.body.bank_number,email:req.body.email}}, function(err, res) {
         if (err) {res.send(err);} });
+        
     });
 //portfolio
-app.get("/portfolio", isLoggedIn, function(req,res){
-    res.render('portfolio');
+
+app.post("/home",  function(req,res){
+    s1.create({
+        price: req.body.price,            
+        sym: req.body.sym,
+        numStocks: req.body.numStocks}, function(err, newlyCreated){
+        if(err){
+            console.log("Error; the world is against you.");
+            console.log(err);
+        }
+        else{
+            
+            console.log(req.body);
+            res.send(newlyCreated);
+            // res.redirect("/portfolio");  
+
+        }
+    });
+});
+
+app.get("/portfolio", function(req,res){
+    s1.find({}, function(err, allStocks){
+        if(err){
+            console.log("Error; the world is against you.");
+            console.log(err);
+        }
+        else{
+            res.render('portfolio', {s1: allStocks});
+        }
+    });
 });
 //transaction
 app.get("/transaction", isLoggedIn, function(req,res){

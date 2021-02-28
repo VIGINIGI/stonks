@@ -22,23 +22,22 @@
                     <th scope="col">LTP</th>
                     <th scope="col">Cur. Val</th>
                     <th scope="col">P&L</th>
-                    <th scope="col">Net chg</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
+                    <% s1.forEach(function(s1) { %>
+                    <td><%= s1.sym %></td>
+                    <td><%= s1.numStocks %></td>
+                    <td><i class="fas fa-rupee-sign"></i><%= (s1.price*9/10)*(s1.numStocks*10/11) %></td>
+                    <td><i class="fas fa-rupee-sign"></i><%= s1.price %></td>
+                    <td><i class="fas fa-rupee-sign"></i><%= s1.price*s1.numStocks %></td>
+                    <td><i class="fas fa-rupee-sign"></i><%= (s1.price*s1.numStocks)-((s1.price*9/10)*(s1.numStocks*10/11)) %></td>
+                    <% })   %>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>-</td>
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
@@ -54,7 +53,6 @@
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>-</td>
                 </tr>
                 <tr>
                     <th scope="row">4</th>
@@ -64,11 +62,9 @@
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>-</td>
                 </tr>
                 <tr>
                     <th scope="row">5</th>
-                    <td>-</td>
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>

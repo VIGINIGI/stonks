@@ -48,7 +48,6 @@
           </div>
         </div>
         <br><br>
-            
         <div class="row row-content">
           <% stock.forEach(function(stock) { %>
               
@@ -68,9 +67,8 @@
                       <div class="number-input sm-number-input">
                         <button class='btn-outline-danger' onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i class="fa fa-minus" aria-hidden="true"></i></button>
                         <input class="quantity" min="1" name="quantity" id="quantity" value="1" type="number">
-                        <button class='btn-outline-success'  onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button class='btn-outline-success'  onclick="qty()"><i class="fa fa-plus" aria-hidden="true"></i></button>
                       </div>
-                
                     </div>
                     <div class="col-sm-2"></div>
                   </div>
@@ -78,7 +76,12 @@
                     <div class="row">
                       <div class='col-sm-1'></div>
                       <div class='col-sm-5'>
-                          <a name="" id="" class="btn btn-block btn-outline-success" href="#" role="button">BUY</a>
+                        <form name="form" method="POST">    
+                          <input type="hidden" name="sym" value="<%= stock.sym %>">
+                          <input type="hidden" name="price" value="<%= stock.price %>">
+                          <input type="hidden" name="numStocks" id="qty" value=""/>                         
+                          <a name="" id="" class="btn btn-block btn-outline-success" role="button" type="submit">BUY</a>
+                        </form>
                       </div>
                       <div class='col-sm-5'>
                           <a name="" id="" class="btn btn-block btn-outline-danger" href="#" role="button">SELL</a>
@@ -109,5 +112,14 @@
     </div>
 </div>
 </body>
+<script>
+  function qty(){
+    document.querySelector('#quantity').stepUp()
+    var qty = document.getElementById('quantity').value
+    document.getElementById('qty').value = qty
+    // document.forms["form"].submit();
+
+  }
+</script>
 <%- include('partials/footer'); -%>
   
