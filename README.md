@@ -1,2 +1,2 @@
-# MiniProj_E-Learning
-E-learning website for Mini Project
+Stonks
+A tribute to a legendary meme! Jokes apart, our project focuses on Stock Portfolio Management for the users, allowing them to Buy, Sell and manage the shares of different companies. Our project helps users to keep track of their investments in the stock market, by accessing the portfolio anytime, from anywhere. A user can access all the features after signing up for the website using an email ID. After signing up, users can Buy the stocks they want to invest in, and it will be reflected in their portfolio, allowing them to easily access and manage their investments. The users can see the values of different stocks and make efficient decisions about their portfolios accordingly. The users can also access their cash balance and other profile details through the profile page.
