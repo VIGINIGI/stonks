@@ -3,7 +3,8 @@ body, html {
 }
 .bg {
   /* The image used */
-  background-image: url("kjsce.jpg");
+  background-color: gray;
+
 
   /* Full height */
   height: 100%;
@@ -12,4 +13,46 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.container-fluid{
+  background-color:rgba(0, 0, 0, 0.9);
+}
+
+h1{
+  /* margin-top: 10px; */
+  color:white;
+}
+
+.card{
+  background-color: black;
+  color:#f2eded;
+  margin-bottom: 25px;
+  box-shadow: 20px 20px 30px rgba(0,0,0,0.2);
+}
+
+.card1{
+  background-color: black;
+  color:#f2eded;
+  margin-bottom: 8px;
+  box-shadow: 20px 20px 30px rgba(0,0,0,0.2);
+}
+
+.card2{
+  background: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5));
+  color:#f2eded;
+  margin-bottom: 5px;
+  box-shadow: 20px 20px 30px rgba(0,0,0,0.2);
+}
+
+
+h4{
+  color: white;
+}
+
+.quantity{
+  width: 50px; 
+  border-color: white; 
+  background-color: rgba(0, 0, 0); 
+  color: white
 }

@@ -1,0 +1,104 @@
+<%- include('partials/header'); -%>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style_profile.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm-4"><h2><%= currentUser.username %></h2></div>
+            <div class="col-sm-6"><h1>Profile Page</h1></div>
+            <div class="col-sm-2"><a href="/home" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://i.ebayimg.com/images/g/6pEAAOSw8gleOa9d/s-l400.jpg" width="100px" height="100px"></a></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+        
+                <div>
+
+                    <a href="/portfolio"><button class="btn btn-primary">View Portfolio <i class="fas fa-sign-out-alt"></i></button></a>
+                </div>
+                
+                <br><br>
+
+                <ul class="list-group">
+                    <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+                    <li class="list-group-item text-right" style="color: black"><span class="pull-left"><strong>Total Stocks Held</strong></span> 125</li>
+                    <li class="list-group-item text-right" style="color: black"><span class="pull-left"><strong>Cash Balance</strong></span> <%= currentUser.balance %></li>
+                </ul>
+                
+            </div>
+            <div class="col-sm-9">
+                    
+
+                    
+                <div class="tab-content">
+                    <div class="tab-pane active" id="settings">
+                            
+                        
+                        <hr>
+                        <form class="form" action="/profile" method="post" id="registrationForm">
+                            <div class="form-group">
+                                
+                                <div class="col-xs-6">
+                                    <label for="full_name"><h4>Full Name</h4></label>
+                                    <input type="text" value="<%= currentUser.fullname %>" class="form-control" name="full_name" id="first_name" placeholder="full name" title="enter your full name if any.">
+                                </div>
+                            </div>
+                            
+                
+                            <div class="form-group">
+                                
+                                <div class="col-xs-6">
+                                    <label for="phone"><h4>Bank A/C Number</h4></label>
+                                    <input type="text" value="<%= currentUser.accNum %>" class="form-control" name="bank_number" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                                </div>
+                            </div>
+                
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="mobile"><h4>Mobile</h4></label>
+                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                
+                                <div class="col-xs-6">
+                                    <label for="email"><h4>Email</h4></label>
+                                    <input type="email" value="<%= currentUser.email %>" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                        <br>
+                                        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
+                                        <!-- <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button> -->
+                                        <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button> -->
+                                    </div>
+                            </div>
+                        </form>
+                    
+                    </div><!--/tab-pane-->
+                </div><!--/tab-content-->
+
+            </div><!--/col-9-->
+        </div><!--/row-->
+</div>
+</body>
+    <%- include('partials/footer'); -%>

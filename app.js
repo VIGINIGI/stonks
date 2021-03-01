@@ -6,6 +6,9 @@ var User = require("./models/user");
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
 const { request } = require('express');
+var stock = require('./models/stock');
+var s1 = require('./models/portfolio');
+
 
 
 mongoose.set('useNewUrlParser', true);
@@ -18,6 +21,7 @@ mongoose.connect("mongodb://localhost:27017/stonks");
 
 var app = express();
 app.set('view engine', 'ejs');
+app.use(express.json());
 
 app.use(require("express-session")({
     secret: "zerodha stonks go down",
@@ -37,6 +41,8 @@ app.use(function(req,res, next){
     res.locals.currentUser = req.user;
     next();
 });
+
+
 // ++++++++++
 // Routes   +
 // ++++++++++
@@ -47,7 +53,15 @@ app.get("/", function(req,res){
 });
 
 app.get("/home", isLoggedIn, function(req, res){
-    res.render('home',{currentUser: req.user});
+    stock.find({}, function(err, allStocks){
+        if(err){
+            console.log("Error; the world is against you.");
+            console.log(err);
+        }
+        else{
+            res.render("home", {stock: allStocks, currentUser: req.user});
+        }
+    });
 });
 
 // SIGNUP
@@ -61,9 +75,11 @@ app.post("/signup", function(req,res){
     req.body.fullname
     req.body.email
     req.body.password
-    req.body.accNum
+    req.body.accNum 
     req.body.balance
-    User.register(new User({username: req.body.username, fullname: req.body.fullname, email: req.body.email, accNum: req.body.accNum, balance: req.body.balance }), req.body.password, function(err, user){
+    req.body.number
+
+    User.register(new User({username: req.body.username, fullname: req.body.fullname, email: req.body.email, accNum: req.body.accNum, balance: req.body.balance, number:  req.body.balance}), req.body.password, function(err, user){
         if(err){
             console.log(err);
             return res.render("signup");
@@ -72,6 +88,78 @@ app.post("/signup", function(req,res){
             res.redirect("/home");
         });
     });
+});
+
+app.post("/stock",  
+function(req,res){
+    stock.create({name: req.body.name,
+        desc: req.body.desc,
+        industry: req.body.industry,
+        price: req.body.price,            
+        sym: req.body.sym,
+        numStocks: req.body.numStocks}, function(err, newlyCreated){
+        if(err){
+            console.log("Error; the world is against you.");
+            console.log(err);
+        }
+        else{
+            // res.redirect("/stock"); 
+            console.log(req.body);
+            res.send(newlyCreated); 
+
+        }
+    });
+});
+//profile
+app.get("/profile", isLoggedIn,  function(req,res){
+    // const data=user.find({username:currentUser});
+    res.render('profile',{currentUser: req.user});
+});
+app.post("/profile",function(req,res){
+    User.updateOne({username:req.user},{$set:{fullname:req.body.full_name,number:req.body.mobile,
+    accNum:req.body.bank_number,email:req.body.email}}, function(err, res) {
+        if (err) {res.send(err);} });
+        
+    });
+//portfolio
+
+app.post("/home",  function(req,res){
+    s1.create({
+        price: req.body.price,            
+        sym: req.body.sym,
+        numStocks: req.body.numStocks}, function(err, newlyCreated){
+        if(err){
+            console.log("Error; the world is against you.");
+            console.log(err);
+        }
+        else{
+            
+            console.log(req.body);
+            res.send(newlyCreated);
+            // res.redirect("/portfolio");  
+
+        }
+    });
+});
+
+app.get("/portfolio", function(req,res){
+    s1.find({}, function(err, allStocks){
+        if(err){
+            console.log("Error; the world is against you.");
+            console.log(err);
+        }
+        else{
+            res.render('portfolio', {s1: allStocks});
+        }
+    });
+});
+//transaction
+app.get("/transaction", isLoggedIn, function(req,res){
+    res.render('transaction');
+});
+//About Us
+app.get("/aboutus", function(req,res){
+    res.render('aboutus');
 });
 
 // LOGIN

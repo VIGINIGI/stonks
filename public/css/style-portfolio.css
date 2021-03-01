@@ -1,0 +1,22 @@
+body{
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.container{
+    margin: 200px;
+}
+
+thead{
+    background-color: 
+    #757474
+    ;
+}
+
+
+h1{
+    color:white;
+}
+
+h6{
+    color: gray;
+}

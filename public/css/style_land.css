@@ -1,0 +1,61 @@
+html,
+body,
+header,
+#intro {
+    height: 100%;
+}
+body{
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+#intro {
+    background: linear-gradient( rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.55) ), url('https://g.foolcdn.com/editorial/images/467777/getty-stock-market-success.jpg')no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+#btn{
+    border:2px solid white;
+    color: white;
+}
+
+#btn:hover{
+    background: white;
+    color: black;
+}
+
+.row form .form-control {
+    background:none;
+    border:none;
+    border-bottom:1px solid #434a52;
+    border-radius:0;
+    box-shadow:none;
+    outline:none;
+    color:inherit;
+}
+
+.row form .btn-primary {
+    background:#214a80;
+    border:none;
+    border-radius:4px;
+    padding:11px;
+    box-shadow:none;
+    margin-top:26px;
+    text-shadow:none;
+    outline:none;
+}
+  
+.row form .btn-primary:hover, .row form .btn-primary:active {
+    background:#214a80;
+    outline:none;
+}
+
+img{
+    margin-left: 50px;
+}
+
+
+  
